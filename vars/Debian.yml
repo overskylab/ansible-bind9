@@ -1,0 +1,5 @@
+---
+bind_service_name: bind9
+
+bind_apt_package: bind9
+bind_apt_dependencies: []

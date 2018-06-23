@@ -1,0 +1,15 @@
+---
+- name: Install bind packages
+  apt:
+    name: "{{ item }}"
+    state: present
+    update_cache: yes
+  with_items:
+    - "{{ bind_apt_package }}"
+    - "{{ bind_apt_dependencies }}"
+
+- name: Ensure {{ bind_service_name }} service started and start up at boot
+  systemd:
+    name: "{{ bind_service_name }}"
+    state: started
+    enabled: yes

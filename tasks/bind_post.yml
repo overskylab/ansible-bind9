@@ -1,0 +1,9 @@
+---
+- name: Add custom lines to bind9 local configuration
+  lineinfile:
+    path: "{{ bind_config_local_file_path }}"
+    line: "{{ item }}"
+    state: present
+  with_items: "{{ bind_config_local_vars }}"
+  notify: Restart Bind
+  

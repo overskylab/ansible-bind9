@@ -1,0 +1,11 @@
+---
+# Search files config
+bind_search_config_path: "{{ playbook_dir }}/files/groups/{{ item }}/bind"
+bind_search_config_paths: []
+bind_host_config_file_path: "{{ bind_host_config_path | default(inventory_hostname) }}/named.conf.j2"
+
+bind_config_file_path: "/etc/bind/named.conf"
+bind_config_local_file_path: "/etc/bind/named.conf.local"
+
+bind_config_local_vars: {}
+  # - "include /etc/bind/secondary/named.conf;"

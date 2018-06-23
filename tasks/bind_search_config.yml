@@ -1,0 +1,30 @@
+---
+- name: Set list of path to look for local bind configuration directory
+  set_fact:
+    bind_search_config_paths: "{{ bind_search_config_paths }} + [ '{{ bind_search_config_path }}' ]"
+  with_items: "{{ group_names }}"
+
+- name: Check if bind configuration directory exists
+  stat:
+    path: "{{ item }}"
+  register: bind_config_check
+  become: false
+  delegate_to: 127.0.0.1
+  with_first_found:
+    - files: "{{ bind_search_config_paths }}"
+      skip: true
+
+- name: Set bind configuration directory
+  set_fact:
+    bind_host_config_path: "{{ bind_config_check.results[0].stat.path }}"
+  when:
+    - bind_config_check.results[0] is defined
+    - bind_config_check.results[0].stat is defined
+    - bind_config_check.results[0].stat.isdir
+
+- name: Check if bind template configuration file is exists
+  stat:
+    path: "{{ bind_host_config_file_path }}"
+  become: false
+  delegate_to: 127.0.0.1
+  register: bind_config_check
