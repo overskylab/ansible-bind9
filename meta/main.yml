@@ -1,8 +1,9 @@
 ---
 galaxy_info:
+  role_name: bind9
   author: Teerawat Namsricharoensuk
   description: Ansible role to install and config Bind9
-  license: "MIT"
+  license: MIT
   min_ansible_version: 2.4
   platforms:
   - name: Ubuntu
@@ -10,5 +11,5 @@ galaxy_info:
     - trusty
     - xenial
   galaxy_tags:
-    - Bind9
+    - bind9
 dependencies: []
