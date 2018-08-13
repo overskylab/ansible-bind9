@@ -1,8 +1,7 @@
 ---
 galaxy_info:
-  author: iStackhost
+  author: Teerawat Namsricharoensuk
   description: Ansible role to install and config Bind9
-  company: "iStackhost"
   license: "MIT"
   min_ansible_version: 2.4
   platforms:

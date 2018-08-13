@@ -1,4 +1,4 @@
-# Ansible Role: BIND
+# Ansible Role: BIND9
 
 
 ## Requirements
@@ -17,7 +17,7 @@ None.
 
     - hosts: all
       roles:
-        - istackhost.bind
+        - overskylab.bind9
 
 
 ## License
@@ -26,4 +26,4 @@ MIT
 
 ## Author Information
 
-iStackhost
+Teerawat Namsricharoensuk
