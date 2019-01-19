@@ -4,14 +4,14 @@
     path: "{{ bind_config_local_file_path }}"
     line: "{{ item }}"
     state: present
-  with_items: "{{ bind_config_local_vars }}"
+  with_items: "{{ bind_config_local_custom }}"
   notify: Restart Bind
 
 - name: Add custom content in bind9 options configuration file
   blockinfile:
     path: "{{ bind_config_options_file_path }}"
     insertafter: "^options {"
-    block: "{{ bind_options_custom_configs }}"
+    block: "{{ bind_config_options_custom }}"
     state: present
-  when: bind_options_custom_configs is defined
+  when: bind_config_options_custom is defined
   notify: Restart Bind
