@@ -1,9 +1,17 @@
 ---
-- name: Add custom lines to bind9 local configuration
+- name: Add custom lines in bind9 local configuration file
   lineinfile:
     path: "{{ bind_config_local_file_path }}"
     line: "{{ item }}"
     state: present
   with_items: "{{ bind_config_local_vars }}"
   notify: Restart Bind
-  
+
+- name: Add custom content in bind9 options configuration file
+  blockinfile:
+    path: "{{ bind_config_options_file_path }}"
+    insertafter: "^options {"
+    block: "{{ bind_options_custom_configs }}"
+    state: present
+  when: bind_options_custom_configs is defined
+  notify: Restart Bind
